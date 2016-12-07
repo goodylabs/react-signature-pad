@@ -17,6 +17,7 @@ export default class SignaturePad extends React.Component {
     this.backgroundColor = this.props.backgroundColor || "rgba(0,0,0,0)";
     this.onEnd = this.props.onEnd;
     this.onBegin = this.props.onBegin;
+    this.onClear = this.props.onClear;
   }
 
   componentDidMount() {
@@ -39,6 +40,10 @@ export default class SignaturePad extends React.Component {
     }
     var ctx = this._ctx,
         canvas = this._canvas;
+
+    if(typeof this.props.onClear === 'function') {
+      this.props.onClear();
+    }
 
     ctx.fillStyle = this.backgroundColor;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
